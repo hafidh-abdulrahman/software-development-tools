@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Software Development Tools
 
 ![CI](https://github.com/hafidh-abdulrahman/software-development-tools/actions/workflows/basic-ci.yml/badge.svg)
@@ -91,3 +92,6 @@ After working through this repository, a student should be able to:
 - GitHub Docs: https://docs.github.com
 - GitHub Skills (free interactive courses): https://skills.github.com
 - OMG UML specification: https://www.omg.org/spec/UML
+=======
+# software-development-tools
+>>>>>>> 7df9c308c021bf32cc4bd2a1cf91eaff32743210
