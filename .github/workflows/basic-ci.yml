@@ -1,0 +1,67 @@
+name: Basic CI
+
+# Run on every push and pull request that targets main
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:   # also allows a manual run from the Actions tab
+
+jobs:
+  check-repository:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Show environment information
+        run: |
+          echo "Runner OS: $RUNNER_OS"
+          git --version
+          echo "Commit: $GITHUB_SHA"
+
+      - name: Verify required files and folders exist
+        run: |
+          missing=0
+          for path in \
+            README.md \
+            .gitignore \
+            requirements-management/README.md \
+            design-and-modelling/README.md \
+            development-environments/README.md \
+            git-and-github/README.md \
+            git-and-github/basic-git-commands.md \
+            git-and-github/collaboration-workflow.md \
+            documentation/README.md \
+            practical-exercises/README.md \
+            practical-exercises/exercise-01-repository-creation.md \
+            practical-exercises/exercise-02-commits-and-branches.md \
+            practical-exercises/exercise-03-pull-requests.md
+          do
+            if [ -f "$path" ]; then
+              echo "OK       $path"
+            else
+              echo "MISSING  $path"
+              missing=1
+            fi
+          done
+          exit $missing
+
+      - name: Check that no Markdown file is empty
+        run: |
+          empty=0
+          while IFS= read -r file; do
+            if [ ! -s "$file" ]; then
+              echo "EMPTY: $file"
+              empty=1
+            fi
+          done < <(find . -name "*.md" -not -path "./.git/*")
+          if [ "$empty" -eq 0 ]; then
+            echo "All Markdown files contain content."
+          fi
+          exit $empty
+
+      - name: Summary
+        run: echo "Basic CI checks passed."

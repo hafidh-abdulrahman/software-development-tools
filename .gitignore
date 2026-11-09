@@ -1,0 +1,40 @@
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE and editor settings
+.idea/
+.vscode/
+*.iml
+.project
+.classpath
+.settings/
+nbproject/private/
+*.xcworkspace/xcuserdata/
+xcuserdata/
+.vs/
+
+# Build output
+target/
+build/
+bin/
+out/
+dist/
+node_modules/
+__pycache__/
+*.class
+*.pyc
+
+# Logs and temporary files
+*.log
+*.tmp
+*.swp
+*~
+
+# Environment and secrets
+.env
+*.pem
+
+# Archives
+*.zip
